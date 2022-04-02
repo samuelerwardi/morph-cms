@@ -1,0 +1,15 @@
+{% set urlField = pimcore_input('asd') %}
+{% set widthField = pimcore_numeric('iframe_width') %}
+{% set heightField = pimcore_numeric('iframe_height') %}
+{% set transparentField = pimcore_checkbox('iframe_transparent') %}
+
+{% if editmode %}
+    <div>
+        <h2>IFrame</h2>
+        <div>
+            URL: {{ urlField }}
+        </div>
+    </div>
+{% else %}
+
+{% endif %}
