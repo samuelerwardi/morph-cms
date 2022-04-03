@@ -1,21 +1,21 @@
-<?php
+<?php 
 
-/**
+/** 
 * Inheritance: no
 * Variants: no
 
 
-Fields Summary:
+Fields Summary: 
 - clutchId [input]
 - sire [manyToOneRelation]
 - dame [manyToOneRelation]
 - images [imageGallery]
 - eggsLaid [numeric]
 - hatched [numeric]
+- hatchLink [manyToManyRelation]
 - hatchDate [date]
-- hatchings [imageGallery]
 - slugs [input]
-*/
+*/ 
 
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -23,7 +23,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Breeding',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1648366754,
+   'modificationDate' => 1648989971,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -102,9 +102,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
-                 'regexFlags' => 
-                array (
-                ),
                  'unique' => false,
                  'showCharCount' => false,
                  'name' => 'clutchId',
@@ -113,7 +110,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
@@ -309,7 +306,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => true,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
@@ -323,6 +320,56 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValueGenerator' => '',
               )),
               2 => 
+              Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyRelation::__set_state(array(
+                 'fieldtype' => 'manyToManyRelation',
+                 'width' => '',
+                 'height' => '',
+                 'maxItems' => '',
+                 'assetUploadPath' => '',
+                 'relationType' => true,
+                 'objectsAllowed' => true,
+                 'assetsAllowed' => false,
+                 'assetTypes' => 
+                array (
+                  0 => 
+                  array (
+                    'assetTypes' => '',
+                  ),
+                ),
+                 'documentsAllowed' => false,
+                 'documentTypes' => 
+                array (
+                  0 => 
+                  array (
+                    'documentTypes' => '',
+                  ),
+                ),
+                 'classes' => 
+                array (
+                  0 => 
+                  array (
+                    'classes' => 'Product',
+                  ),
+                ),
+                 'pathFormatterClass' => '',
+                 'name' => 'hatchLink',
+                 'title' => 'Hatch Link',
+                 'tooltip' => '',
+                 'mandatory' => false,
+                 'noteditable' => false,
+                 'index' => false,
+                 'locked' => NULL,
+                 'style' => '',
+                 'permissions' => NULL,
+                 'datatype' => 'data',
+                 'invisible' => false,
+                 'visibleGridView' => true,
+                 'visibleSearch' => true,
+                 'blockedVarsForExport' => 
+                array (
+                ),
+              )),
+              3 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Date::__set_state(array(
                  'fieldtype' => 'date',
                  'queryColumnType' => 'bigint(20)',
@@ -348,33 +395,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                 ),
                  'defaultValueGenerator' => '',
               )),
-              3 => 
-              Pimcore\Model\DataObject\ClassDefinition\Data\ImageGallery::__set_state(array(
-                 'fieldtype' => 'imageGallery',
-                 'width' => '',
-                 'height' => '',
-                 'uploadPath' => '',
-                 'ratioX' => NULL,
-                 'ratioY' => NULL,
-                 'predefinedDataTemplates' => '',
-                 'name' => 'hatchings',
-                 'title' => 'Hatchings',
-                 'tooltip' => '',
-                 'mandatory' => false,
-                 'noteditable' => false,
-                 'index' => false,
-                 'locked' => false,
-                 'style' => '',
-                 'permissions' => NULL,
-                 'datatype' => 'data',
-                 'relationType' => false,
-                 'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
-                 'blockedVarsForExport' => 
-                array (
-                ),
-              )),
               4 => 
               Pimcore\Model\DataObject\ClassDefinition\Data\Input::__set_state(array(
                  'fieldtype' => 'input',
@@ -382,9 +402,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
-                 'regexFlags' => 
-                array (
-                ),
                  'unique' => false,
                  'showCharCount' => false,
                  'name' => 'slugs',
@@ -465,9 +482,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'dao' => NULL,
    'blockedVarsForExport' => 
-  array (
-  ),
-   'activeDispatchingEvents' => 
   array (
   ),
 ));
