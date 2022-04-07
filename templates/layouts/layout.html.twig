@@ -1,0 +1,43 @@
+{% include "layouts/header.html.twig" %}
+<body>
+<div class="site-wrap">
+    {% include "layouts/navigation.html.twig" %}
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>
+
+<script src="/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/assets/js/jquery-ui.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/aos.js"></script>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+    $(document.body).on('click', '.dropdown-menu a', function (event) {
+
+        var $target = $(event.currentTarget);
+
+        $target.closest('.dropdown')
+            .find('[data-bind="label"]').text($target.text())
+            .end()
+            .children('.dropdown-toggle').dropdown('toggle');
+
+        return true;
+
+    });
+
+    function changeSession(lang) {
+        $.ajax({
+            type: "POST",
+            url: "/language",
+            data: {lang: lang}
+        }).done(function (result) {
+            location.reload();
+        });
+    }
+</script>
