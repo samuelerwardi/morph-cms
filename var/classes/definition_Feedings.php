@@ -1,13 +1,14 @@
-<?php
+<?php 
 
-/**
+/** 
 * Inheritance: no
 * Variants: no
 
 
-Fields Summary:
+Fields Summary: 
+- product [manyToOneRelation]
 - image [image]
-*/
+*/ 
 
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -15,7 +16,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Feedings',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1648364888,
+   'modificationDate' => 1649586325,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -70,6 +71,46 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
          'childs' => 
         array (
           0 => 
+          Pimcore\Model\DataObject\ClassDefinition\Data\ManyToOneRelation::__set_state(array(
+             'fieldtype' => 'manyToOneRelation',
+             'width' => '',
+             'assetUploadPath' => '',
+             'relationType' => true,
+             'objectsAllowed' => true,
+             'assetsAllowed' => false,
+             'assetTypes' => 
+            array (
+            ),
+             'documentsAllowed' => false,
+             'documentTypes' => 
+            array (
+            ),
+             'classes' => 
+            array (
+              0 => 
+              array (
+                'classes' => 'Product',
+              ),
+            ),
+             'pathFormatterClass' => '',
+             'name' => 'product',
+             'title' => 'product',
+             'tooltip' => '',
+             'mandatory' => true,
+             'noteditable' => false,
+             'index' => true,
+             'locked' => NULL,
+             'style' => '',
+             'permissions' => NULL,
+             'datatype' => 'data',
+             'invisible' => false,
+             'visibleGridView' => true,
+             'visibleSearch' => true,
+             'blockedVarsForExport' => 
+            array (
+            ),
+          )),
+          1 => 
           Pimcore\Model\DataObject\ClassDefinition\Data\Image::__set_state(array(
              'fieldtype' => 'image',
              'name' => 'image',
@@ -78,7 +119,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'mandatory' => false,
              'noteditable' => false,
              'index' => false,
-             'locked' => NULL,
+             'locked' => false,
              'style' => '',
              'permissions' => NULL,
              'datatype' => 'data',
@@ -146,9 +187,6 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'dao' => NULL,
    'blockedVarsForExport' => 
-  array (
-  ),
-   'activeDispatchingEvents' => 
   array (
   ),
 ));

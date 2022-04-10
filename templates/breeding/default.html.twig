@@ -1,6 +1,10 @@
 {% extends 'layouts/layout.html.twig' %}
 
 {% block content %}
+{#    {{ dump(app) }}#}
+{#    {{ dump(document) }}#}
+    {{ dump(pimcore_website_config("breeding").fullpath) }}
+{#    {{ dump(\Pimcore\Tool::getHostUrl().breedings[0].images.items[0].image.fullpath) }}#}
     {% include 'layouts/breadcrumb.html.twig' %}
     <div class="site-section">
         <div class="container">
@@ -23,14 +27,17 @@
                     </div>
                 </div>
             </div>
+            {% for breeding in breedings %}
             <div class="row mt-5 mb-5">
                 <div class="col-md-12">
-                    <h2 class="text-truncate text-black text-left">#Kuning Hitam</h2>
+                    <h2 class="text-truncate text-black text-left">
+                        {{ breeding.clutchId }}
+                    </h2>
                 </div>
                 <div class="col-md-6">
-                    <a href="http://web.morph.local:8001/detail/085b0e4c-1b83-4ad5-8aeb-f4d03900be47">
+                    <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("breeding").fullpath ~ "/" ~ breeding.key | lower}}">
                         <img
-                            src="http://admin.dwikaarief.com/assets/images/upload/product/6991074c98876af55241d60dc14f446d.jpeg"
+                            src="{{ breeding.images ? app.request.getSchemeAndHttpHost() ~ breeding.images.items[0].image.fullpath : "#" }}"
                             alt="Image" class="img-fluid-styles-breeding">
                     </a>
                 </div>
@@ -40,8 +47,8 @@
                             <span class="font-weight-bold">Sire</span>
                         </div>
                         <div class="col-9">
-                            <a href="http://web.morph.local:8001/detail/">
-                                <span class="badge badge-success">Sire</span>
+                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("breeding").fullpath ~ "/" ~ breeding.key | lower}}">
+                                <span class="badge badge-success">{{ breeding.sire.name }}</span>
                             </a>
                         </div>
                     </div>
@@ -50,47 +57,48 @@
                             <span class="font-weight-bold">Dame</span>
                         </div>
                         <div class="col-9">
-                            <a href="http://web.morph.local:8001/detail/">
-                                <span class="badge badge-success">Dame</span>
+                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("breeding").fullpath ~ "/" ~ breeding.key | lower}}">
+                                <span class="badge badge-success">{{ breeding.dame.name }}</span>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 mb-5">
-                <div class="col-md-12">
-                    <h2 class="text-truncate text-black text-left">#Pyton Lesser Banana</h2>
-                </div>
-                <div class="col-md-6">
-                    <a href="http://web.morph.local:8001/detail/b6da5077-342d-433e-862e-f95b3fd2c4eb">
-                        <img
-                            src="http://admin.dwikaarief.com/assets/images/upload/product/d32774901f330751157e48a028eb5d1a.jpg"
-                            alt="Image" class="img-fluid-styles-breeding">
-                    </a>
-                </div>
-                <div class="col-md-6 align-items-center pt-5">
-                    <div class="row pt-5">
-                        <div class="col-3">
-                            <span class="font-weight-bold">Sire</span>
-                        </div>
-                        <div class="col-9">
-                            <a href="http://web.morph.local:8001/detail/">
-                                <span class="badge badge-success">Sire</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row pt-5">
-                        <div class="col-3">
-                            <span class="font-weight-bold">Dame</span>
-                        </div>
-                        <div class="col-9">
-                            <a href="http://web.morph.local:8001/detail/">
-                                <span class="badge badge-success">Dame</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+{#            <div class="row mt-5 mb-5">#}
+{#                <div class="col-md-12">#}
+{#                    <h2 class="text-truncate text-black text-left">#Pyton Lesser Banana</h2>#}
+{#                </div>#}
+{#                <div class="col-md-6">#}
+{#                    <a href="{{ app.request.getSchemeAndHttpHost()}}b6da5077-342d-433e-862e-f95b3fd2c4eb">#}
+{#                        <img#}
+{#                            src="http://admin.dwikaarief.com/assets/images/upload/product/d32774901f330751157e48a028eb5d1a.jpg"#}
+{#                            alt="Image" class="img-fluid-styles-breeding">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-md-6 align-items-center pt-5">#}
+{#                    <div class="row pt-5">#}
+{#                        <div class="col-3">#}
+{#                            <span class="font-weight-bold">Sire</span>#}
+{#                        </div>#}
+{#                        <div class="col-9">#}
+{#                            <a href="{{ app.request.getSchemeAndHttpHost()}}">#}
+{#                                <span class="badge badge-success">Sire</span>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="row pt-5">#}
+{#                        <div class="col-3">#}
+{#                            <span class="font-weight-bold">Dame</span>#}
+{#                        </div>#}
+{#                        <div class="col-9">#}
+{#                            <a href="{{ app.request.getSchemeAndHttpHost()}}">#}
+{#                                <span class="badge badge-success">Dame</span>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             <div class="col text-center">
                 <button class="buy-now btn btn-sm btn-secondary">Load More</button>
             </div>

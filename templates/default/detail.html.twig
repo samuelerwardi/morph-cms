@@ -1,31 +1,29 @@
 {% extends 'layouts/layout.html.twig' %}
 
 {% block content %}
-    {{ dump(breeding) }}
+{#    {{ dump(breeding) }}#}
     <div class="site-wrap">
-        <div class="bg-light py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 mb-0"><a href="http://localhost:8001//Home">Home</a> <span
-                            class="mx-2 mb-0">/</span> <strong class="text-black">Single</strong></div>
-                </div>
-            </div>
-        </div>
+        {% include 'layouts/breadcrumb.html.twig' %}
         <div class="site-section pt-5" style="margin-top: 100px; margin-bottom: 20px;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <img
-                            src="http://admin.dwikaarief.com/assets/images/upload/product/6991074c98876af55241d60dc14f446d.jpeg"
+                            src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
                             alt="Image" class="img-thumbnail">
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-sm">
-                                <h2 class="text-black">Kuning Hitam</h2>
+                                <h2 class="text-black">
+                                    {{ product.name }}
+                                </h2>
                             </div>
                             <div class="col-sm">
-                                <h3 class="text-black">Rp 300.000</h3></div>
+                                <h3 class="text-black">
+                                    Rp {{ product.IDR | number_format(2, ',', '.') }}
+                                </h3>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
@@ -34,7 +32,7 @@
                                         <span class="font-weight-bold">Sex</span>
                                     </div>
                                     <div class="col-9">
-                                        male
+                                        {{ product.sex }}
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +54,7 @@
                                         <span class="font-weight-bold">DoB</span>
                                     </div>
                                     <div class="col-9">
-                                        01-12-2021
+                                        {{ product.dob }}
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +86,7 @@
                                         <span class="font-weight-bold">Sire</span>
                                     </div>
                                     <div class="col-9">
-                                        -
+                                        {{ breeding.getTotalCount() == 1 ? breeding.load()[0].sire.name : "-" }}
                                     </div>
                                 </div>
                             </div>
@@ -100,8 +98,9 @@
                                         <span class="font-weight-bold">Traits</span>
                                     </div>
                                     <div class="col-9">
-                                        <span class="badge badge-pill badge-primary">test1</span>
-                                        <span class="badge badge-pill badge-primary">test2</span>
+                                        {% for morph in product.morph %}
+                                            <span class="badge badge-pill badge-primary">{{ morph.name }}</span>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +110,7 @@
                                         <span class="font-weight-bold">Dame</span>
                                     </div>
                                     <div class="col-9">
-                                        -
+                                        {{ breeding.getTotalCount() == 1 ? breeding.load()[0].dame.name : "-" }}
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +130,9 @@
                             </div>
                             <div class="card-body">
                                 <blockquote class="blockquote mb-0">
-                                    <p>dsadasd</p>
+                                    <p>
+                                        {{ product.notes | raw }}
+                                    </p>
                                 </blockquote>
                             </div>
                         </div>
@@ -151,21 +152,26 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="nonloop-block-3 owl-carousel">
-                            <div class="item">
-                                <div class="block-4 text-center">
-                                    <figure class="block-4-image">
-                                        <img
-                                            src="http://admin.dwikaarief.com/assets/images/upload/feedings/4328622c391a64c94caded4c73097d9e.jpg"
-                                            alt="Image placeholder" class="img-fluid">
-                                    </figure>
-                                    <div class="block-4-text p-4">
-                                        <p class="mb-0 font-weight-bold font-italic text-muted">
-                                            Friday 21st January 2022 </p>
-                                        <p class="mb-0 font-weight-bold font-italic text-muted">
-                                            4:00pm </p>
+                            {% for feeding in feedings %}
+                                <div class="item">
+                                    <div class="block-4 text-center">
+                                        <figure class="block-4-image">
+{#                                            {{ dump(feeding.image) }}#}
+                                            <img
+                                                src="{{ app.request.getSchemeAndHttpHost() ~ feeding.image.fullpath }}"
+                                                alt="Image placeholder" class="img-fluid">
+                                        </figure>
+                                        <div class="block-4-text p-4">
+                                            <p class="mb-0 font-weight-bold font-italic text-muted">
+                                                {{  feeding.creationDate | date("Y F j") }}
+                                            </p>
+                                            <p class="mb-0 font-weight-bold font-italic text-muted">
+                                                {{  feeding.creationDate | date("g:i a") }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

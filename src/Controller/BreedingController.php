@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use Pimcore\Controller\FrontendController;
+use Pimcore\Model\DataObject\Breeding;
+use Pimcore\Tool;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,7 +19,10 @@ class BreedingController extends FrontendController
      */
     public function defaultAction(Request $request)
     {
-        return [];
+//        dd(\Pimcore\Tool::getHostUrl());
+        $data = new Breeding\Listing();
+//        dd($data->load()[0]->getImages()->getItems()[0]->getImage()->getFullPath());
+        return ["breedings" => $data->load()];
     }
 
     /**
@@ -29,6 +34,14 @@ class BreedingController extends FrontendController
      */
     public function detailAction(Request $request)
     {
-        return $this->render('breeding/detail.html.twig', ['param1' => 'value1']);
+//        dd($request->attributes);
+        $key = $request->get("id");
+        $breedings = new Breeding\Listing();
+        $breedings->setCondition("o_key = ?", strtoupper($key));
+        if ($breedings->getTotalCount() == 1){
+            $datas = $breedings->load();
+            return ["breeding" => $datas[0]];
+        }
+        return $this->redirect("/");
     }
 }

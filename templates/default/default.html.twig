@@ -16,81 +16,53 @@
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="/single/04914751-47b9-4bf5-bc92-069e83daf52b">
-                                        <img
-                                            src="http://admin.dwikaarief.com/assets/images/upload/product/acb1f87b9961c591b025c938f52b46a6.jpeg"
-                                            alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
-                                    <h3>
-                                        <a href="/single/04914751-47b9-4bf5-bc92-069e83daf52b"></a>
-                                        <span>
-                                                <p class="text-truncate text-black text-left"
-                                                   style="max-width: inherit; padding-right: 15px;">
-                                                  Hitam Corak Kuning
-                                                </p>
-                                                <p style="float: right;margin-top: -40px;" class="text-black ml-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
-                                                         stroke-width="1" width="16"
-                                                         height="16"
-                                                         fill="currentColor" class="bi bi-gender-female"
-                                                         viewBox="0 0 16 16">
-                                                      <path fill-rule="evenodd"
-                                                            d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                                    </svg>
-                                                </p>
-                                            </span>
-                                        </a>
-                                    </h3>
-                                    <p class="mb-0 text-left text-black" style="margin-top: -12px;">Hitam Corak Kuning
-                                        <span class="text-black font-weight-bold"
-                                              style="float: right; margin-top: -25px;">
-                                            <span class="text-black font-weight-bold">Rp 400.000</span>
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="/single/bd53caf6-0be4-40e3-9d40-91b63ae289c6"><img
-                                            src="http://admin.dwikaarief.com/assets/images/upload/product/7b0676f21a71f6b3881705e4410107d5.jpeg"
-                                            alt="Image placeholder" class="img-fluid-styles"></a>
-                                </div>
-                                <div class="block-4-text p-4">
-                                    <h3>
-                                        <a href="/single/bd53caf6-0be4-40e3-9d40-91b63ae289c6">
+                        {% for product in products %}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                                <div class="block-4 text-center border">
+                                    <div class="block-4-image">
+                                        <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode}}"><img
+                                                src="http://admin.dwikaarief.com/assets/images/upload/product/7b0676f21a71f6b3881705e4410107d5.jpeg"
+                                                alt="Image placeholder" class="img-fluid-styles"></a>
+                                    </div>
+                                    <div class="block-4-text p-4">
+                                        <h3>
+                                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | lower}}">
                                           <span>
                                             <p class="text-truncate text-black text-left"
                                                style="max-width: inherit; padding-right: 15px;">
-                                              Kepala Cokelat
+                                              {{ product.name }}
                                             </p>
                                             <p style="float: right;margin-top: -40px;" class="text-black ml-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
-                                                     stroke-width="1" width="16" height="16" fill="currentColor"
-                                                     class="bi bi-gender-male" viewBox="0 0 16 16">
-                                                  <path fill-rule="evenodd"
-                                                        d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                {% if product.sex == "MALE" %}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                             stroke-width="1" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                    {% else %}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                             stroke-width="1" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                          <path fill-rule="evenodd"
+                                                                d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                {% endif %}
+
                                                 </svg>
                                             </p>
                                           </span>
-                                        </a>
-                                    </h3>
-                                    <p class="mb-0 text-left text-black" style="margin-top: -12px;">
-                                        Kepala Cokelat
-                                        <span class="text-black font-weight-bold"
-                                              style="float: right; margin-top: -25px;">
-                                            <span class="text-black font-weight-bold">Rp 800.000</span>
+                                            </a>
+                                        </h3>
+                                        <p class="mb-0 text-left text-black" style="margin-top: -12px;">
+                                            {{ product.identity }}
+                                            <span class="text-black font-weight-bold"
+                                                  style="float: right; margin-top: -25px;">
+                                            <span class="text-black font-weight-bold">{{ product.IDR }}</span>
                                         </span>
-                                    </p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <div class="row" data-aos="fade-up">
                         <div class="col-md-12 text-center font-weight-bold">
