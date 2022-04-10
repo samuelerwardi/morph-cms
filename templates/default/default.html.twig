@@ -21,7 +21,7 @@
                                 <div class="block-4 text-center border">
                                     <div class="block-4-image">
                                         <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode}}"><img
-                                                src="http://admin.dwikaarief.com/assets/images/upload/product/7b0676f21a71f6b3881705e4410107d5.jpeg"
+                                                src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
                                                 alt="Image placeholder" class="img-fluid-styles"></a>
                                     </div>
                                     <div class="block-4-text p-4">

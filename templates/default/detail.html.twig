@@ -1,7 +1,8 @@
 {% extends 'layouts/layout.html.twig' %}
 
 {% block content %}
-{#    {{ dump(breeding) }}#}
+    {# {{ dump(breeding) }} #}
+{#    {{ dump(measurement) }}#}
     <div class="site-wrap">
         {% include 'layouts/breadcrumb.html.twig' %}
         <div class="site-section pt-5" style="margin-top: 100px; margin-bottom: 20px;">
@@ -76,7 +77,7 @@
                                         <span class="font-weight-bold">Weight</span>
                                     </div>
                                     <div class="col-9">
-                                        43
+                                        {{ measurement.unit.value ~ " " ~ measurement.unit.unitId }}
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +96,7 @@
                             <div class="col-sm-6">
                                 <div class="row">
                                     <div class="col-3">
-                                        <span class="font-weight-bold">Traits</span>
+                                        <span class="font-weight-bold">Morph</span>
                                     </div>
                                     <div class="col-9">
                                         {% for morph in product.morph %}
@@ -156,17 +157,17 @@
                                 <div class="item">
                                     <div class="block-4 text-center">
                                         <figure class="block-4-image">
-{#                                            {{ dump(feeding.image) }}#}
+                                            {# {{ dump(feeding.image) }} #}
                                             <img
                                                 src="{{ app.request.getSchemeAndHttpHost() ~ feeding.image.fullpath }}"
                                                 alt="Image placeholder" class="img-fluid">
                                         </figure>
                                         <div class="block-4-text p-4">
                                             <p class="mb-0 font-weight-bold font-italic text-muted">
-                                                {{  feeding.creationDate | date("Y F j") }}
+                                                {{ feeding.creationDate | date("Y F j") }}
                                             </p>
                                             <p class="mb-0 font-weight-bold font-italic text-muted">
-                                                {{  feeding.creationDate | date("g:i a") }}
+                                                {{ feeding.creationDate | date("g:i a") }}
                                             </p>
                                         </div>
                                     </div>

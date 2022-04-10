@@ -5,6 +5,7 @@ namespace App\Controller;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Model\DataObject\Breeding;
 use Pimcore\Model\DataObject\Feedings;
+use Pimcore\Model\DataObject\Measurement;
 use Pimcore\Model\DataObject\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,19 @@ class DefaultController extends FrontendController
             $breedings->setCondition("hatchLink like '%,object|".$product->getId().",%'");
             $feedings = new Feedings\Listing();
             $feedings->setCondition("product__id = ?", $product->getId());
-            return ["product" => $product, "breeding" => $breedings, "feedings" => $feedings->load()];
+            $measurements = new Measurement\Listing();
+            $measurements->setCondition("product__id = ?", $product->getId());
+            $measurements->setOrderKey("oo_id")->setOrder("DESC")->setLimit(1);
+            $measurement = null;
+            if ($measurements->getTotalCount() > 0) {
+                $measurement = $measurements->load()[0];
+            }
+            return [
+                "product" => $product,
+                "breeding" => $breedings,
+                "feedings" => $feedings->load(),
+                "measurement" => $measurement,
+            ];
         }
 
         return $this->redirect("/");

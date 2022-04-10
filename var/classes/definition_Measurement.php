@@ -16,7 +16,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Measurement',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1649586341,
+   'modificationDate' => 1649594578,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -99,7 +99,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'mandatory' => true,
              'noteditable' => false,
              'index' => true,
-             'locked' => NULL,
+             'locked' => false,
              'style' => '',
              'permissions' => NULL,
              'datatype' => 'data',
@@ -119,8 +119,8 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
              'defaultUnit' => 'gram',
              'validUnits' => 
             array (
-              0 => 'gram',
-              1 => 'kilogram',
+              0 => 'Gram',
+              1 => 'Kilogram',
             ),
              'decimalPrecision' => NULL,
              'autoConvert' => false,
