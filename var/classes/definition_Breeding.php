@@ -12,7 +12,7 @@ Fields Summary:
 - images [imageGallery]
 - eggsLaid [numeric]
 - hatched [numeric]
-- hatchLink [manyToManyRelation]
+- hatchling [manyToManyRelation]
 - hatchDate [date]
 - slugs [input]
 */ 
@@ -23,7 +23,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Breeding',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1648989971,
+   'modificationDate' => 1650137502,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -352,13 +352,13 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                   ),
                 ),
                  'pathFormatterClass' => '',
-                 'name' => 'hatchLink',
-                 'title' => 'Hatch Link',
+                 'name' => 'hatchling',
+                 'title' => 'Hatchling',
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',

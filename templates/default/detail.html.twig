@@ -115,7 +115,14 @@
                                         <span class="font-weight-bold">Sire</span>
                                     </div>
                                     <div class="col-9">
-                                        {{ breeding.getTotalCount() == 1 ? breeding.load()[0].sire.name : "-" }}
+{#                                        {{ breeding.getTotalCount() == 1 ? breeding.load()[0].sire.name : "-" }}#}
+                                        {% if breeding.getTotalCount() == 1 %}
+                                            <a class="text-black" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.load()[0].sire.key | url_encode }}">
+                                                {{ breeding.load()[0].sire.name }}
+                                            </a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +150,13 @@
                                         <span class="font-weight-bold">Dame</span>
                                     </div>
                                     <div class="col-9">
-                                        {{ breeding.getTotalCount() == 1 ? breeding.load()[0].dame.name : "-" }}
+                                        {% if breeding.getTotalCount() == 1 %}
+                                            <a class="text-black" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.load()[0].dame.key | url_encode }}">
+                                                {{ breeding.load()[0].dame.name }}
+                                            </a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +209,7 @@
                                         </figure>
                                         <div class="block-4-text p-4">
                                             <p class="mb-0 font-weight-bold font-italic text-muted">
-                                                {{ feeding.creationDate | date("Y F j") }}
+                                                {{ feeding.creationDate | date("j F Y") }}
                                             </p>
                                             <p class="mb-0 font-weight-bold font-italic text-muted">
                                                 {{ feeding.creationDate | date("g:i a") }}

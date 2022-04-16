@@ -156,10 +156,17 @@
                                          x-placement="bottom-start"
                                          style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
                                         <a class="dropdown-item" data-filter="price"
-                                           href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~  "?sort_by=price" }}">
+                                           href="{{ app.request.getSchemeAndHttpHost()
+                                           ~ pimcore_website_config("available").fullpath ~ "?order_by=idr" ~ "&order="
+                                           ~ (app.request.query.get("order") == "desc" ? "asc" : "desc") }}">
                                             Price
                                         </a>
-                                        <a class="dropdown-item" data-filter="date" href="javascript:void(0)">Date</a>
+                                        <a class="dropdown-item" data-filter="date"
+                                           href="{{ app.request.getSchemeAndHttpHost()
+                                           ~ pimcore_website_config("available").fullpath ~ "?order_by=dob" ~ "&order="
+                                           ~ (app.request.query.get("dob") == "desc" ? "asc" : "desc") }}">
+                                            Date
+                                        </a>
                                     </div>
                                 </div>
 

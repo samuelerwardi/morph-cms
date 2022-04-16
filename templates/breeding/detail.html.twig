@@ -1,190 +1,198 @@
 {% extends 'layouts/layout.html.twig' %}
 
 {% block content %}
-{#    {{ dump(breeding) }}#}
-    <div class="site-wrap">
-        <div class="bg-light py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 mb-0"><a href="http://localhost:8001//Home">Home</a> <span
-                            class="mx-2 mb-0">/</span> <strong class="text-black">Single</strong></div>
-                </div>
+    {% include 'layouts/breadcrumb.html.twig' %}
+    {# {{ dump(breeding) }} #}
+    <div class="site-section">
+        <div class="container">
+            <div class="col-md-12 row mt-5 mb-5">
+                <h2 class="text-truncate text-black text-left">
+                    CLUTCH-001
+                </h2>
             </div>
-        </div>
-        <div class="site-section pt-5" style="margin-top: 100px; margin-bottom: 20px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img
-                            src="http://admin.dwikaarief.com/assets/images/upload/product/6991074c98876af55241d60dc14f446d.jpeg"
-                            alt="Image" class="img-thumbnail">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-sm">
-                                <h2 class="text-black">Kuning Hitam</h2>
-                            </div>
-                            <div class="col-sm">
-                                <h3 class="text-black">Rp 300.000</h3></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Sex</span>
-                                    </div>
-                                    <div class="col-9">
-                                        male
-                                    </div>
+            <div class="row mb-5 mt-lg-5 mt-sm-4">
+                <div class="col-md-6">
+                    <img
+                        src="http://admin.dwikaarief.com/assets/images/upload/product/6991074c98876af55241d60dc14f446d.jpeg"
+                        alt="Image" class="img-thumbnail">
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Sire</span>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">ID</span>
-                                    </div>
-                                    <div class="col-9">
-                                        085b0e4c-1b83-4ad5-8aeb-f4d03900be47
-                                    </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        <a class="text-black" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.sire.key | url_encode }}">
+                                            {{ breeding.sire.name }}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">DoB</span>
-                                    </div>
-                                    <div class="col-9">
-                                        01-12-2021
-                                    </div>
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Dame</span>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Clutch</span>
-                                    </div>
-                                    <div class="col-9">
-                                        Kuning Hitam
-                                    </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        <a class="text-black" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.dame.key | url_encode }}">
+                                            {{ breeding.dame.name }}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Weight</span>
-                                    </div>
-                                    <div class="col-9">
-                                        43
-                                    </div>
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Eggs Laid</span>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Sire</span>
-                                    </div>
-                                    <div class="col-9">
-                                        -
-                                    </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        {{ breeding.eggsLaid }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Morph</span>
-                                    </div>
-                                    <div class="col-9">
-                                        <span class="badge badge-pill badge-primary">test1</span>
-                                        <span class="badge badge-pill badge-primary">test2</span>
-                                    </div>
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Slugs</span>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        {{ breeding.slugs ? breeding.slughs : "-" }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <span class="font-weight-bold">Dame</span>
-                                    </div>
-                                    <div class="col-9">
-                                        -
-                                    </div>
+                        </div>
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Hatched</span>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        {{ breeding.hatched }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mb-3">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span class="font-weight-bold text-uppercase">Hatch Date</span>
+                                </div>
+                                <div class="col-9">
+                                    <p class="text-uppercase">
+                                        {{ breeding.hatchDate | date("j F Y") }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="site-section bg-light pt-5 pb-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Note
-                            </div>
-                            <div class="card-body">
-                                <blockquote class="blockquote mb-0">
-                                    <p>dsadasd</p>
-                                </blockquote>
+            <div class="site-section block-3 site-blocks-2">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="site-section-heading pt-4">
+                                <h2>Hatchling</h2>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="site-section block-3 site-blocks-2">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="col-md-12 site-section-heading text-center pt-4">
-                            <h2>Recent Feedings</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="nonloop-block-3 owl-carousel">
-                            <div class="item">
-                                <div class="block-4 text-center">
-                                    <figure class="block-4-image">
-                                        <img
-                                            src="http://admin.dwikaarief.com/assets/images/upload/feedings/4328622c391a64c94caded4c73097d9e.jpg"
-                                            alt="Image placeholder" class="img-fluid">
-                                    </figure>
-                                    <div class="block-4-text p-4">
-                                        <p class="mb-0 font-weight-bold font-italic text-muted">
-                                            Friday 21st January 2022 </p>
-                                        <p class="mb-0 font-weight-bold font-italic text-muted">
-                                            4:00pm </p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row mb-5">
+                                {% for product in breeding.hatchling %}
+                                    <div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">
+                                        <div class="block-4 text-center border  h-100">
+                                            {% if product.status == "AVAILABLE" %}
+                                                <div class="label available">
+                                                    <p class="label-text">AVAILABLE</p>
+                                                </div>
+                                            {% endif %}
+                                            {% if product.status == "HOLD_BACK" %}
+                                                <div class="label holdback">
+                                                    <p class="label-text">HOLDBACK</p>
+                                                </div>
+                                            {% endif %}
+                                            {% if product.status == "RESERVED" %}
+                                                <div class="label reserved">
+                                                    <p class="label-text">RESERVED</p>
+                                                </div>
+                                            {% endif %}
+                                            {% if product.status == "SOLD" %}
+                                                <div class="label sold">
+                                                    <p class="label-text">SOLD</p>
+                                                </div>
+                                            {% endif %}
+                                            <div class="block-4-image">
+                                                <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                                    <img
+                                                        src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
+                                                        alt="Image placeholder" class="img-fluid-styles"></a>
+                                            </div>
+                                            <div class="row ml-0">
+                                                <div class="col-md-8">
+                                                    <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                                    </a>
+                                                    <span>
+                                                    <p class="text-black text-left">
+                                                        {{ product.name }}
+                                                    </p>
+                                                </span>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <p class="text-black">
+                                                        {% if product.sex == "MALE" %}
+                                                            <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                                 stroke-width="1" width="16" height="16"
+                                                                 fill="currentColor"
+                                                                 class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                      d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                            </svg>
+                                                        {% else %}
+                                                            <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                                 stroke-width="1" width="16" height="16"
+                                                                 fill="currentColor"
+                                                                 class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                                <path fill-rule="evenodd"
+                                                                      d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                            </svg>
+                                                        {% endif %}
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p class="mb-0 text-left text-secondary">
+                                                        {{ product.identity }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p class="mb-0 text-left">
+                                            <span class="text-black font-weight-bold text-uppercase">
+                                                IDR {{ product.IDR | number_format(2, ',', '.') }}
+                                            </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- copyright -->
-        <br/><br/>
-        <footer class="site-footer border-top">
-            <div class="container">
-                <div class="col-md-12 text-center">
-                    <p>
-                        Copyright &copy;<script data-cfasync="false" src="#"></script>
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        All rights reserved | <a href="#" target="_blank" class="text-primary">Artisan Morph</a>
-                    </p>
-                </div>
-            </div>
-        </footer>
     </div>
+    {% include 'layouts/footer.html.twig' %}
 {% endblock %}

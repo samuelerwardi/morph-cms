@@ -23,6 +23,8 @@ class DefaultController extends FrontendController
      */
     public function defaultAction(Request $request)
     {
+        $orderBy = $request->get("order_by");
+        $order = $request->get("order");
         $searchByMorph = $request->get("morph");
         $searchByGender = $request->get("gender");
         $searchByDob = $request->get("dob");
@@ -50,9 +52,11 @@ class DefaultController extends FrontendController
                     }
                 }
             }
-
 //            dump($query);
             $data->addConditionParam($query);
+        }
+        if (in_array($order, ["asc", "desc"]) && in_array($orderBy, ["idr", "dob"])) {
+            $data->setOrderKey($orderBy)->setOrder($order);
         }
 //        echo $data->getQueryBuilder()->getSQL();die;
 //        dd($data->getQueryBuilder()->getParameters());
@@ -82,7 +86,7 @@ class DefaultController extends FrontendController
         $breedings = new Breeding\Listing();
         if ($products->getTotalCount() == 1) {
             $product = $products->load()[0];
-            $breedings->setCondition("hatchLink like '%,object|".$product->getId().",%'");
+            $breedings->setCondition("hatchling like '%,object|".$product->getId().",%'");
             $feedings = new Feedings\Listing();
             $feedings->setCondition("product__id = ?", $product->getId());
             $measurements = new Measurement\Listing();
