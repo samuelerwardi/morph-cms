@@ -1,0 +1,139 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block content %}
+    {% include 'layouts/breadcrumb.html.twig' %}
+    <div class="site-section">
+{#        {{ dump(app.request) }}#}
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-12 mt-lg-5 mt-sm-4">
+                            <div class="float-md-left mb-4">
+                                <h2 class="text-black h3">Available</h2>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="dropdown dropdown-select mr-3">
+                                    <button class="btn btn-secondary dropdown-toggle " type="button" id="sortby"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        Sort By
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                         x-placement="bottom-start"
+                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                        <a class="dropdown-item" data-filter="price" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~  "?sort_by=price" }}">
+                                            Price
+                                        </a>
+                                        <a class="dropdown-item" data-filter="date" href="javascript:void(0)">Date</a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown dropdown-select">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterby"
+                                            data-toggle="dropdown">
+                                        Filter
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-filter="gender"
+                                           href="javascript:void(0)">Gender</a>
+                                        <a class="dropdown-item" data-filter="status"
+                                           href="javascript:void(0)">Status</a>
+                                        <a class="dropdown-item" data-filter="year" href="javascript:void(0)">Year</a>
+                                        <a class="dropdown-item" data-filter="morph" href="javascript:void(0)">Morph</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        {% for product in products %}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                                <div class="block-4 text-center border">
+                                    {% if product.status == "AVAILABLE" %}
+                                        <div class="label available">
+                                            <p class="label-text">AVAILABLE</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "HOLD_BACK" %}
+                                        <div class="label holdback">
+                                            <p class="label-text">HOLDBACK</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "RESERVED" %}
+                                        <div class="label reserved">
+                                            <p class="label-text">RESERVED</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "SOLD" %}
+                                        <div class="label sold">
+                                            <p class="label-text">SOLD</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="block-4-image">
+                                        <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                            <img
+                                                src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
+                                                alt="Image placeholder" class="img-fluid-styles"></a>
+                                    </div>
+                                    <div class="block-4-text p-4">
+                                        <h3>
+                                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                          <span>
+                                            <p class="text-truncate text-black text-left"
+                                               style="max-width: inherit; padding-right: 15px;">
+                                              {{ product.name }}
+                                            </p>
+                                            <p style="float: right;margin-top: -40px;" class="text-black ml-3">
+                                                {% if product.sex == "MALE" %}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                             stroke-width="1" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                    {% else %}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                             stroke-width="1" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                          <path fill-rule="evenodd"
+                                                                d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                {% endif %}
+
+                                                </svg>
+                                            </p>
+                                          </span>
+                                            </a>
+                                        </h3>
+                                        <p class="mb-0 text-left text-black" style="margin-top: -12px;">
+                                            {{ product.identity }}
+                                            <span class="text-black font-weight-bold"
+                                                  style="float: right; margin-top: -25px;">
+                                            <span class="text-black font-weight-bold">{{ product.IDR }}</span>
+                                        </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-md-12 text-center font-weight-bold">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright -->
+    {% include 'layouts/footer.html.twig' %}
+{% endblock %}

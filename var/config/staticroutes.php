@@ -22,7 +22,7 @@ return [
         "name" => "available-detail",
         "pattern" => "/\\/available\\/(.*)/",
         "reverse" => "/available/%id",
-        "controller" => "App\\Controller\\DefaultController::detailAction",
+        "controller" => "App\\Controller\\AvailableController::detailAction",
         "variables" => "id",
         "defaults" => NULL,
         "siteId" => [
@@ -31,6 +31,6 @@ return [
         "methods" => NULL,
         "priority" => 0,
         "creationDate" => 1649531011,
-        "modificationDate" => 1649531273
+        "modificationDate" => 1650143833
     ]
 ];
