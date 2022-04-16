@@ -1,0 +1,266 @@
+{% extends 'layouts/layout.html.twig' %}
+
+{% block content %}
+    {% include 'layouts/breadcrumb.html.twig' %}
+    <div class="site-section">
+        {# {{ dump(app.request) }} #}
+
+        <div class="container">
+            <div class="row mb-5 mt-lg-5 mt-sm-4">
+                <div class="col-lg-3">
+                    {# <div class="filter"> #}
+                    {# <button class="btn btn-default" type="button" data-toggle="collapse" #}
+                    {# data-target="#mobile-filter" aria-expanded="false" aria-controls="mobile-filter">Filters #}
+                    {# <span class="fa fa-filter pl-1"></span> #}
+                    {# </button> #}
+                    {# </div> #}
+                    <div id="mobile-filter">
+                        <div>
+                            <h6 class="border-bottom">Filter By</h6>
+                            {# <p class="mb-2">Color</p> #}
+                            {# <ul class="list-group"> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="red"></span>Red </a></li> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="teal"></span>Teal </a></li> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="blue"></span>Blue </a></li> #}
+                            {# </ul> #}
+                        </div>
+                        <div>
+                            <h6>Type</h6>
+                            <form class="ml-md-2">
+                                <div class="form-inline border rounded p-sm-2 my-2">
+                                    <input type="checkbox" name="type" id="boring">
+                                    <label for="boring" class="pl-1 pt-sm-0 pt-1">Boring</label>
+                                </div>
+                                <div class="form-inline border rounded p-sm-2 my-2">
+                                    <input type="checkbox" name="type" id="ugly">
+                                    <label for="ugly" class="pl-1 pt-sm-0 pt-1">Ugly</label>
+                                </div>
+                                <div class="form-inline border rounded p-md-2 p-sm-1">
+                                    <input type="checkbox" name="type" id="notugly">
+                                    <label for="notugly" class="pl-1 pt-sm-0 pt-1">Not Ugly</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <form class="ml-md-2">
+                        <section id="sidebar">
+                            {# <div> #}
+                            <h6 class="border-bottom">Filter By</h6>
+                            {# <p class="mb-2">Color</p> #}
+                            {# <ul class="list-group"> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="red"></span>Red </a></li> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="teal"></span>Teal </a></li> #}
+                            {# <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#"> <span class="fa fa-circle pr-1" id="blue"></span>Blue </a></li> #}
+                            {# </ul> #}
+                            {# </div> #}
+                            <div>
+                                <p class="mb-2">Morph</p>
+                                <div class="ml-2">
+                                    {% if morphs is not empty %}
+                                        {% for morph in morphs %}
+                                            <div class="form-inline border rounded p-sm-2 my-2">
+                                                <input type="checkbox" class="filters" name="morph"
+                                                       value="{{ morph.name }}" id="morph-{{ morph.name }}">
+                                                <label for="morph-{{ morph.name }}"
+                                                       class="pl-1 pt-sm-0 pt-1">
+                                                    {{ morph.name }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                            <div>
+                                <p class="mb-2">Gender</p>
+                                <div class="ml-2">
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="radio" name="gender" class="filters" id="gender-male">
+                                        <label for="gender-male" class="pl-1 pt-sm-0 pt-1">Male</label>
+                                    </div>
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="radio" name="gender" class="filters" id="gender-female">
+                                        <label for="gender-female" class="pl-1 pt-sm-0 pt-1">Female</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-2">Status</p>
+                                <div class="ml-2">
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="checkbox" name="type" id="status-available">
+                                        <label for="status-available" class="pl-1 pt-sm-0 pt-1">Available</label>
+                                    </div>
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="checkbox" name="type" id="status-holdback">
+                                        <label for="status-holdback" class="pl-1 pt-sm-0 pt-1">Holdback</label>
+                                    </div>
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="checkbox" name="type" id="status-reserved">
+                                        <label for="status-reserved" class="pl-1 pt-sm-0 pt-1">Reserved</label>
+                                    </div>
+                                    <div class="form-inline border rounded p-sm-2 my-2">
+                                        <input type="checkbox" name="type" id="status-sold">
+                                        <label for="status-sold" class="pl-1 pt-sm-0 pt-1">Sold</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-2">Date</p>
+                                <div class="ml-2">
+                                    {% if dobs is not empty %}
+                                        {% for dob in dobs %}
+                                            <div class="form-inline border rounded p-sm-2 my-2">
+                                                <input type="checkbox" name="type" id="dob-{{ dob.dob }}">
+                                                <label for="dob-{{ dob.dob }}" class="pl-1 pt-sm-0 pt-1">
+                                                    {{ dob.dob }}
+                                                </label>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="float-md-left mb-4">
+                                <h2 class="text-black h3">Available</h2>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="dropdown dropdown-select mr-3">
+                                    <button class="btn btn-secondary dropdown-toggle " type="button" id="sortby"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        Sort By
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                         x-placement="bottom-start"
+                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                        <a class="dropdown-item" data-filter="price"
+                                           href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~  "?sort_by=price" }}">
+                                            Price
+                                        </a>
+                                        <a class="dropdown-item" data-filter="date" href="javascript:void(0)">Date</a>
+                                    </div>
+                                </div>
+
+                                {# <div class="dropdown dropdown-select"> #}
+                                {# <button class="btn btn-secondary dropdown-toggle" type="button" id="filterby" #}
+                                {# data-toggle="dropdown"> #}
+                                {# Filter #}
+                                {# </button> #}
+                                {# <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"> #}
+                                {# <a class="dropdown-item" data-filter="gender" #}
+                                {# href="javascript:void(0)">Gender</a> #}
+                                {# <a class="dropdown-item" data-filter="status" #}
+                                {# href="javascript:void(0)">Status</a> #}
+                                {# <a class="dropdown-item" data-filter="year" href="javascript:void(0)">Year</a> #}
+                                {# <a class="dropdown-item" data-filter="morph" href="javascript:void(0)">Morph</a> #}
+                                {# </div> #}
+                                {# </div> #}
+                            </div>
+                            <div class="d-flex">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        {% for product in products %}
+                            <div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">
+                                <div class="block-4 text-center border  h-100">
+                                    {% if product.status == "AVAILABLE" %}
+                                        <div class="label available">
+                                            <p class="label-text">AVAILABLE</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "HOLD_BACK" %}
+                                        <div class="label holdback">
+                                            <p class="label-text">HOLDBACK</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "RESERVED" %}
+                                        <div class="label reserved">
+                                            <p class="label-text">RESERVED</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "SOLD" %}
+                                        <div class="label sold">
+                                            <p class="label-text">SOLD</p>
+                                        </div>
+                                    {% endif %}
+                                    <div class="block-4-image">
+                                        <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                            <img
+                                                src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
+                                                alt="Image placeholder" class="img-fluid-styles"></a>
+                                    </div>
+                                    <div class="row ml-0">
+                                        <div class="col-md-8">
+                                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                            </a>
+                                            <span>
+                                            <p class="text-black text-left">
+                                              {{ product.name }}
+                                            </p>
+                                          </span>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <p class="text-black ml-3">
+                                                {% if product.sex == "MALE" %}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                         stroke-width="1" width="16" height="16" fill="currentColor"
+                                                         class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                    </svg>
+                                                {% else %}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" stroke="black"
+                                                         stroke-width="1" width="16" height="16" fill="currentColor"
+                                                         class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                              d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                    </svg>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="mb-0 text-left text-secondary">
+                                                {{ product.identity }}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p class="mb-0 text-left">
+                                            <span class="text-black font-weight-bold">
+                                                IDR {{ product.IDR | number_format(2) }}
+                                            </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-md-12 text-center font-weight-bold">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- copyright -->
+    {% include 'layouts/footer.html.twig' %}
+
+{% endblock %}

@@ -5,7 +5,7 @@
 {#    {{ dump(measurement) }}#}
     <div class="site-wrap">
         {% include 'layouts/breadcrumb.html.twig' %}
-        <div class="site-section pt-5" style="margin-top: 100px; margin-bottom: 20px;">
+        <div class="site-section pt-5" style="margin-bottom: 20px;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -77,7 +77,7 @@
                                         <span class="font-weight-bold">Weight</span>
                                     </div>
                                     <div class="col-9">
-                                        {{ measurement.unit.value ~ " " ~ measurement.unit.unitId }}
+                                        {{ measurement ? measurement.unit.value ~ " " ~ measurement.unit.unitId : "-" }}
                                     </div>
                                 </div>
                             </div>
@@ -178,20 +178,6 @@
                 </div>
             </div>
         </div>
-        <!-- copyright -->
-        <br/><br/>
-        <footer class="site-footer border-top">
-            <div class="container">
-                <div class="col-md-12 text-center">
-                    <p>
-                        Copyright &copy;<script data-cfasync="false" src="#"></script>
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script>
-                        All rights reserved | <a href="#" target="_blank" class="text-primary">Artisan Morph</a>
-                    </p>
-                </div>
-            </div>
-        </footer>
+        {% include 'layouts/footer.html.twig' %}
     </div>
 {% endblock %}

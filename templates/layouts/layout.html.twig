@@ -39,4 +39,33 @@
             location.reload();
         });
     }
+
+    $('.filters').on('change', function () {
+        var price = new Array();
+        $('input[name=morph]:checked').each(function () {
+            morph.push($(this).val());
+        });
+        var colors = new Array();
+        $('input[name=colors]:checked').each(function () {
+            colors.push($(this).val());
+        });
+        var paramsArray = []
+        var morphsParams = createParamList(morph, 'morph');
+        var colorsParams = createParamList(colors, 'colors');
+        if (morphsParams) {
+            paramsArray.push(morphsParams);
+        }
+        if (colorsParams) {
+            paramsArray.push(colorsParams);
+        }
+        alert('http://localhost/test/javascript.php?' + paramsArray.join('&'));
+    });
+
+    function createParamList(arrayObj, prefix) {
+        var result = arrayObj.map(function (obj) {
+            return prefix + '=' + obj;
+        }).join('&');
+        return result;
+
+    }
 </script>

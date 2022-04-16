@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use Pimcore\Controller\FrontendController;
+use Pimcore\Db;
 use Pimcore\Model\DataObject\Breeding;
 use Pimcore\Model\DataObject\Feedings;
 use Pimcore\Model\DataObject\Measurement;
+use Pimcore\Model\DataObject\Morph;
 use Pimcore\Model\DataObject\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +24,10 @@ class DefaultController extends FrontendController
     public function defaultAction(Request $request)
     {
         $data = new Product\Listing();
+        $morphs = new Morph\Listing();
+        $dob = Db::get()->query("SELECT dob from object_Product group by dob")->fetchAll();
+        return $this->render("default/default-filter.html.twig",
+            ["products" => $data->load(), "morphs" => $morphs->load(),"dobs" => $dob]);
 
         return ["products" => $data->load()];
     }
@@ -52,6 +58,7 @@ class DefaultController extends FrontendController
             if ($measurements->getTotalCount() > 0) {
                 $measurement = $measurements->load()[0];
             }
+
             return [
                 "product" => $product,
                 "breeding" => $breedings,

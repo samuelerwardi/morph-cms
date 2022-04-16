@@ -3,6 +3,7 @@
 {% block content %}
     {% include 'layouts/breadcrumb.html.twig' %}
     <div class="site-section">
+{#        {{ dump(app.request) }}#}
         <div class="container">
             <div class="row mb-5">
                 <div class="col-lg-12">
@@ -10,6 +11,37 @@
                         <div class="col-md-12 mt-lg-5 mt-sm-4">
                             <div class="float-md-left mb-4">
                                 <h2 class="text-black h3">Available</h2>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="dropdown dropdown-select mr-3">
+                                    <button class="btn btn-secondary dropdown-toggle " type="button" id="sortby"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                        Sort By
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                         x-placement="bottom-start"
+                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                        <a class="dropdown-item" data-filter="price" href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~  "?sort_by=price" }}">
+                                            Price
+                                        </a>
+                                        <a class="dropdown-item" data-filter="date" href="javascript:void(0)">Date</a>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown dropdown-select">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="filterby"
+                                            data-toggle="dropdown">
+                                        Filter
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" data-filter="gender"
+                                           href="javascript:void(0)">Gender</a>
+                                        <a class="dropdown-item" data-filter="status"
+                                           href="javascript:void(0)">Status</a>
+                                        <a class="dropdown-item" data-filter="year" href="javascript:void(0)">Year</a>
+                                        <a class="dropdown-item" data-filter="morph" href="javascript:void(0)">Morph</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="d-flex">
                             </div>
@@ -19,14 +51,35 @@
                         {% for product in products %}
                             <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                                 <div class="block-4 text-center border">
+                                    {% if product.status == "AVAILABLE" %}
+                                        <div class="label available">
+                                            <p class="label-text">AVAILABLE</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "HOLD_BACK" %}
+                                        <div class="label holdback">
+                                            <p class="label-text">HOLDBACK</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "RESERVED" %}
+                                        <div class="label reserved">
+                                            <p class="label-text">RESERVED</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if product.status == "SOLD" %}
+                                        <div class="label sold">
+                                            <p class="label-text">SOLD</p>
+                                        </div>
+                                    {% endif %}
                                     <div class="block-4-image">
-                                        <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode}}"><img
+                                        <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                            <img
                                                 src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
                                                 alt="Image placeholder" class="img-fluid-styles"></a>
                                     </div>
                                     <div class="block-4-text p-4">
                                         <h3>
-                                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | lower}}">
+                                            <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
                                           <span>
                                             <p class="text-truncate text-black text-left"
                                                style="max-width: inherit; padding-right: 15px;">
