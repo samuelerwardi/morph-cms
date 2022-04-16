@@ -5,16 +5,16 @@
     {# {{ dump(breeding) }} #}
     <div class="site-section">
         <div class="container">
-            <div class="col-md-12 row mt-5 mb-5">
+            <div class="col-md-12 row mt-5">
                 <h2 class="text-truncate text-black text-left">
                     CLUTCH-001
                 </h2>
             </div>
-            <div class="row mb-5 mt-lg-5 mt-sm-4">
+            <div class="row mb-5">
                 <div class="col-md-6">
                     <img
-                        src="http://admin.dwikaarief.com/assets/images/upload/product/6991074c98876af55241d60dc14f446d.jpeg"
-                        alt="Image" class="img-thumbnail">
+                        src="{{ breeding.images ? app.request.getSchemeAndHttpHost() ~ breeding.images.items[0].image.fullpath : "#" }}"
+                        alt="Image" class="img-fluid-styles-breeding">
                 </div>
                 <div class="col-md-6">
                     <div class="row">
