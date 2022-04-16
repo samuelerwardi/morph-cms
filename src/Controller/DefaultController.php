@@ -23,11 +23,45 @@ class DefaultController extends FrontendController
      */
     public function defaultAction(Request $request)
     {
+        $searchByMorph = $request->get("morph");
+        $searchByGender = $request->get("gender");
+        $searchByDob = $request->get("dob");
+        $searchByStatus = $request->get("status");
         $data = new Product\Listing();
+        if ($searchByStatus) {
+//            dd($searchByStatus);
+            $data->addConditionParam("status IN (?)", [$searchByStatus]);
+        }
+        if ($searchByDob) {
+            $data->addConditionParam("dob IN (?)", [$searchByDob]);
+        }
+        if ($searchByGender) {
+            $data->addConditionParam("sex IN (?)", [$searchByGender]);
+        }
+        if ($searchByMorph) {
+            $query = "";
+            $morphs = new Morph\Listing();
+            $morphs->setCondition("name IN (?)", [$searchByMorph]);
+            if ($morphs->getTotalCount() > 0) {
+                foreach ($morphs->load() as $index => $value) {
+                    $query .= " morph LIKE '%".$value->getId()."%'";
+                    if ($index !== $morphs->getTotalCount() - 1) {
+                        $query .= " OR";
+                    }
+                }
+            }
+
+//            dump($query);
+            $data->addConditionParam($query);
+        }
+//        echo $data->getQueryBuilder()->getSQL();die;
+//        dd($data->getQueryBuilder()->getParameters());
+//        dd($data->load());
         $morphs = new Morph\Listing();
         $dob = Db::get()->query("SELECT dob from object_Product group by dob")->fetchAll();
+
         return $this->render("default/default-filter.html.twig",
-            ["products" => $data->load(), "morphs" => $morphs->load(),"dobs" => $dob]);
+            ["products" => $data->load(), "morphs" => $morphs->load(), "dobs" => $dob]);
 
         return ["products" => $data->load()];
     }
