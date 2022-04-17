@@ -52,13 +52,15 @@
                             </div>
                             <div class="row ml-0">
                                 <div class="col-md-8">
-                                    <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
-                                    </a>
                                     <span>
-                                            <p class="text-black text-left">
-                                              {{ product.name }}
-                                            </p>
-                                          </span>
+                                        <p class="text-black text-left">
+                                            <a class="text-black"
+                                               href="{{ app.request.getSchemeAndHttpHost()
+                                               ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                                {{ product.name }}
+                                            </a>
+                                        </p>
+                                    </span>
                                 </div>
 
                                 <div class="col-md-4">
@@ -82,7 +84,11 @@
                                 </div>
                                 <div class="col-md-12">
                                     <p class="mb-0 text-left text-secondary">
-                                        {{ product.identity }}
+                                        <a class="text-secondary"
+                                           href="{{ app.request.getSchemeAndHttpHost()
+                                           ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                            {{ product.identity }}
+                                        </a>
                                     </p>
                                 </div>
                                 <div class="col-md-12">
