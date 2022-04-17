@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AvailableController extends FrontendController
 {
+    const FEEDING_LIMIT = 6;
+
     /**
      * @Template
      *
@@ -89,6 +91,7 @@ class AvailableController extends FrontendController
             $breedings->setCondition("hatchling like '%,object|".$product->getId().",%'");
             $feedings = new Feedings\Listing();
             $feedings->setCondition("product__id = ?", $product->getId());
+            $feedings->setLimit(self::FEEDING_LIMIT);
             $measurements = new Measurement\Listing();
             $measurements->setCondition("product__id = ?", $product->getId());
             $measurements->setOrderKey("oo_id")->setOrder("DESC")->setLimit(1);

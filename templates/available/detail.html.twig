@@ -106,6 +106,7 @@
                                     </div>
                                     <div class="col-9">
                                         {{ measurement ? measurement.unit.value ~ " " ~ measurement.unit.unitId : "-" }}
+                                        ({{ measurement ? measurement.creationDate | date("j F Y")  : "-" }})
                                     </div>
                                 </div>
                             </div>
