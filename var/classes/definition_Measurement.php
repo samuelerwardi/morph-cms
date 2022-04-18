@@ -1,14 +1,15 @@
-<?php 
+<?php
 
-/** 
+/**
 * Inheritance: no
 * Variants: no
 
 
-Fields Summary: 
+Fields Summary:
 - product [manyToOneRelation]
-- unit [quantityValue]
-*/ 
+- weight [numeric]
+- unit [select]
+*/
 
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -16,7 +17,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Measurement',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1649594578,
+   'modificationDate' => 1650289623,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -111,26 +112,65 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             ),
           )),
           1 => 
-          Pimcore\Model\DataObject\ClassDefinition\Data\QuantityValue::__set_state(array(
-             'fieldtype' => 'quantityValue',
+          Pimcore\Model\DataObject\ClassDefinition\Data\Numeric::__set_state(array(
+             'fieldtype' => 'numeric',
              'width' => '',
-             'unitWidth' => '',
-             'defaultValue' => NULL,
-             'defaultUnit' => 'gram',
-             'validUnits' => 
-            array (
-              0 => 'Gram',
-              1 => 'Kilogram',
-            ),
+             'defaultValue' => 0,
+             'integer' => false,
+             'unsigned' => false,
+             'minValue' => 0,
+             'maxValue' => NULL,
+             'unique' => false,
+             'decimalSize' => NULL,
              'decimalPrecision' => NULL,
-             'autoConvert' => false,
+             'name' => 'weight',
+             'title' => 'weight',
+             'tooltip' => '',
+             'mandatory' => true,
+             'noteditable' => false,
+             'index' => true,
+             'locked' => NULL,
+             'style' => '',
+             'permissions' => NULL,
+             'datatype' => 'data',
+             'relationType' => false,
+             'invisible' => false,
+             'visibleGridView' => false,
+             'visibleSearch' => false,
+             'blockedVarsForExport' => 
+            array (
+            ),
+             'defaultValueGenerator' => '',
+          )),
+          2 => 
+          Pimcore\Model\DataObject\ClassDefinition\Data\Select::__set_state(array(
+             'fieldtype' => 'select',
+             'options' => 
+            array (
+              0 => 
+              array (
+                'key' => 'GRAM',
+                'value' => 'GRAM',
+              ),
+              1 => 
+              array (
+                'key' => 'KILOGRAM',
+                'value' => 'KILOGRAM',
+              ),
+            ),
+             'width' => '',
+             'defaultValue' => '',
+             'optionsProviderClass' => '',
+             'optionsProviderData' => '',
+             'columnLength' => 190,
+             'dynamicOptions' => false,
              'name' => 'unit',
              'title' => 'Unit',
              'tooltip' => '',
              'mandatory' => true,
              'noteditable' => false,
-             'index' => false,
-             'locked' => false,
+             'index' => true,
+             'locked' => NULL,
              'style' => '',
              'permissions' => NULL,
              'datatype' => 'data',
@@ -196,6 +236,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'dao' => NULL,
    'blockedVarsForExport' => 
+  array (
+  ),
+   'activeDispatchingEvents' => 
   array (
   ),
 ));
