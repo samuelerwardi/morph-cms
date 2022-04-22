@@ -1,0 +1,38 @@
+<div class="row" data-aos="fade-up">
+    <div class="col-md-12 text-center">
+        <div class="site-block-27">
+            <ul>
+                {% if(paginationSnacks.previous is defined) %}
+                    <li>
+                        <a href="{{ pimcore_url({'page_snack': paginationSnacks.previous}) }}"
+                           aria-label="Previous">
+                            &lt;
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for page in paginationSnacks.pagesInRange %}
+
+                    {% if(paginationSnacks.current == page) %}
+                        <li class="active"><span>{{ page }}</span></li>
+                    {% else %}
+                        <li>
+                            <a href="{{ pimcore_url({'page_snack': page}) }}">
+                                {{ page }}
+                            </a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if(paginationSnacks.next is defined) %}
+                    <li>
+                        <a href="{{ pimcore_url({'page_snack': paginationSnacks.next}) }}" aria-label="Next">
+                            &gt;
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

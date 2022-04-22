@@ -9,72 +9,27 @@
                     <div class="row">
                         <div class="col-md-12 mt-lg-5 mt-sm-4">
                             <div class="float-md-left mb-4"><h2 class="text-black h3">Facility</h2></div>
-                            <!-- <div class="d-flex">
-                              <div class="dropdown mr-1 ml-md-auto">
-                                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Sort By
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                  <a class="dropdown-item" href="#">Date</a>
-                                  <a class="dropdown-item" href="#">Status</a>
-                                </div>
-                              </div>
-                            </div> -->
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html">
-                                        <img src="http://web.morph.local:8001/images/a2.jpg"
-                                             alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html">
-                                        <img src="http://web.morph.local:8001/images/a2.jpg"
-                                             alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
+                        {% for item in paginator %}
+                            {# {{ dump(item.image.fullpath) }} #}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                                <div class="block-4 text-center border">
+                                    <div class="block-4-image">
+                                        <a href="#">
+                                            <img
+                                                src="{{ item.image ? app.request.getSchemeAndHttpHost() ~ item.image.fullpath : "#" }}"
+                                                alt="Image" class="img-fluid-styles">
+                                        </a>
+                                    </div>
+                                    <div class="block-4-text p-4">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html">
-                                        <img src="http://web.morph.local:8001/images/a2.jpg"
-                                             alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="row" data-aos="fade-up">
-                        <div class="col-md-12 text-center">
-                            <div class="site-block-27">
-                                <ul>
-                                    <li><a href="#">&lt;</a></li>
-                                    <li class="active"><span>1</span></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'includes/pagination.html.twig' %}
                 </div>
             </div>
 
@@ -83,74 +38,26 @@
                     <div class="row">
                         <div class="col-md-12 mt-lg-5 mt-sm-4">
                             <div class="float-md-left mb-4"><h2 class="text-black h3">Snacks</h2></div>
-                            <!-- <div class="d-flex">
-                              <div class="dropdown mr-1 ml-md-auto">
-                                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Sort By
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                                  <a class="dropdown-item" href="#">Date</a>
-                                  <a class="dropdown-item" href="#">Status</a>
-                                </div>
-                              </div>
-
-                            </div> -->
                         </div>
                     </div>
                     <div class="row mb-5">
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html">
-                                        <img src="http://web.morph.local:8001/images/a2.jpg"
-                                             alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html"><img src="http://web.morph.local:8001/images/a2.jpg"
-                                                                    alt="Image placeholder"
-                                                                    class="img-fluid-styles"></a>
-                                </div>
-                                <div class="block-4-text p-4">
-
+                        {% for item in paginatorSnacks %}
+                            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                                <div class="block-4 text-center border">
+                                    <div class="block-4-image">
+                                        <a href="#">
+                                            <img
+                                                src="{{ item.image ? app.request.getSchemeAndHttpHost() ~ item.image.fullpath : "#" }}"
+                                                alt="Image" class="img-fluid-styles">
+                                        </a>
+                                    </div>
+                                    <div class="block-4-text p-4">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
-                            <div class="block-4 text-center border">
-                                <div class="block-4-image">
-                                    <a href="shop-single.html">
-                                        <img src="http://web.morph.local:8001/images/a2.jpg"
-                                             alt="Image placeholder" class="img-fluid-styles">
-                                    </a>
-                                </div>
-                                <div class="block-4-text p-4">
-
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="row" data-aos="fade-up">
-                        <div class="col-md-12 text-center">
-                            <div class="site-block-27">
-                                <ul>
-                                    <li><a href="#">&lt;</a></li>
-                                    <li class="active"><span>1</span></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">&gt;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'includes/pagination-snacks.html.twig' %}
                 </div>
             </div>
         </div>
