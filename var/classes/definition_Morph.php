@@ -15,7 +15,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Morph',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1648363248,
+   'modificationDate' => 1651269299,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',

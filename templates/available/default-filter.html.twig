@@ -61,21 +61,18 @@
                             <div>
                                 <p class="mb-2">Morph</p>
                                 <div class="ml-2">
-                                    {% if morphs is not empty %}
-                                        {% for morph in morphs %}
-                                            {# {{ dd(if morph.name in app.request ) }} #}
-                                            <div class="form-inline border rounded p-sm-2 my-2">
-                                                <input type="checkbox" class="filters" name="morph[]"
-                                                       value="{{ morph.name }}" id="morph-{{ morph.name }}"
-                                                    {{ morph.name in app.request.query.get("morph") ? 'checked' : null }}
-                                                >
-                                                <label for="morph-{{ morph.name }}"
-                                                       class="pl-1 pt-sm-0 pt-1">
+                                    <select class="js-example-basic-multiple form-control" name="morph[]"
+                                            multiple="multiple">
+                                        {% if morphs is not empty %}
+                                            {% for morph in morphs %}
+                                                {# {{ dd(if morph.name in app.request ) }} #}
+                                                <option
+                                                    value="{{ morph.name }}" {{ morph.name in app.request.query.get("morph") ? 'selected' : '' }}>
                                                     {{ morph.name }}
-                                                </label>
-                                            </div>
-                                        {% endfor %}
-                                    {% endif %}
+                                                </option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </select>
                                 </div>
 
                             </div>
@@ -262,7 +259,7 @@
                                         <div class="col-md-12">
                                             <p class="mb-0 text-left">
                                             <span class="text-black font-weight-bold">
-                                                IDR {{ product.IDR | number_format(2, ',', '.') }}
+                                                IDR {{ product.IDR | number_format(0, ',', '.') }}
                                             </span>
                                             </p>
                                         </div>
@@ -292,22 +289,23 @@
     {% include 'layouts/footer.html.twig' %}
     {% block scripts %}
         <script>
-            $('.filters').on('click', function () {
-                // console.log($(this).val());
-                var morph = new Array();
-                $("input[name='morph[]']:checked").each(function () {
-                    morph.push($(this).val());
-                });
-                console.log(morph);
-                var status = new Array();
+            $('.js-example-basic-multiple').select2();
+            $('.js-example-basic-multiple').on('change', function (e) {
+                redirectUrl();
+            });
+
+            function redirectUrl() {
+                var morph = $('.js-example-basic-multiple').val();
+
+                var status = [];
                 $("input[name='status[]']:checked").each(function () {
                     status.push($(this).val());
                 });
-                var gender = new Array();
+                var gender = [];
                 $("input[name='gender']:checked").each(function () {
                     gender.push($(this).val());
                 });
-                var dob = new Array();
+                var dob = [];
                 $("input[name='dob[]']:checked").each(function () {
                     dob.push($(this).val());
                 });
@@ -329,12 +327,15 @@
                 if (dobParams) {
                     paramsArray.push(dobParams);
                 }
-                console.log('http://localhost/test/javascript.php?' + paramsArray.join('&'));
+                console.log(paramsArray.join('&'));
                 location.href = "{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath }}" + "?" + paramsArray.join('&');
+            }
+
+            $('.filters').on('click', function () {
+                redirectUrl();
             });
 
             function createParamList(arrayObj, prefix) {
-                console.log(arrayObj, prefix);
                 var result = arrayObj.map(function (obj) {
                     return prefix + '[]=' + obj;
                 }).join('&');
