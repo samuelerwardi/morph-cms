@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-/** 
+/**
 * Inheritance: no
 * Variants: no
 
 
-Fields Summary: 
+Fields Summary:
 - status [select]
 - identity [input]
 - name [input]
@@ -16,7 +16,7 @@ Fields Summary:
 - morph [manyToManyRelation]
 - idr [numeric]
 - usd [numeric]
-*/ 
+*/
 
 
 return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
@@ -24,7 +24,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'name' => 'Product',
    'description' => '',
    'creationDate' => 0,
-   'modificationDate' => 1648991777,
+   'modificationDate' => 1651216613,
    'userOwner' => 2,
    'userModification' => 2,
    'parentClass' => '',
@@ -154,6 +154,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
                  'unique' => false,
                  'showCharCount' => false,
                  'name' => 'identity',
@@ -161,15 +164,15 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'tooltip' => '',
                  'mandatory' => false,
                  'noteditable' => false,
-                 'index' => false,
+                 'index' => true,
                  'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
                  'relationType' => false,
                  'invisible' => false,
-                 'visibleGridView' => false,
-                 'visibleSearch' => false,
+                 'visibleGridView' => true,
+                 'visibleSearch' => true,
                  'blockedVarsForExport' => 
                 array (
                 ),
@@ -182,6 +185,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
                  'unique' => false,
                  'showCharCount' => false,
                  'name' => 'name',
@@ -251,6 +257,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'defaultValue' => NULL,
                  'columnLength' => 190,
                  'regex' => '',
+                 'regexFlags' => 
+                array (
+                ),
                  'unique' => false,
                  'showCharCount' => false,
                  'name' => 'dob',
@@ -306,6 +315,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'height' => '',
                  'toolbarConfig' => '',
                  'excludeFromSearchIndex' => false,
+                 'maxCharacters' => 0,
                  'name' => 'notes',
                  'title' => 'Notes',
                  'tooltip' => '',
@@ -363,19 +373,12 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'assetsAllowed' => false,
                  'assetTypes' => 
                 array (
-                  0 => 
-                  array (
-                    'assetTypes' => '',
-                  ),
                 ),
                  'documentsAllowed' => false,
                  'documentTypes' => 
                 array (
-                  0 => 
-                  array (
-                    'documentTypes' => '',
-                  ),
                 ),
+                 'enableTextSelection' => false,
                  'classes' => 
                 array (
                   0 => 
@@ -390,7 +393,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => false,
                  'noteditable' => false,
                  'index' => false,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
@@ -407,7 +410,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
             ),
              'icon' => '',
-             'labelWidth' => '',
+             'labelWidth' => 0,
              'labelAlign' => 'left',
           )),
           2 => 
@@ -477,7 +480,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
                  'mandatory' => true,
                  'noteditable' => false,
                  'index' => true,
-                 'locked' => NULL,
+                 'locked' => false,
                  'style' => '',
                  'permissions' => NULL,
                  'datatype' => 'data',
@@ -496,7 +499,7 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
             array (
             ),
              'icon' => '',
-             'labelWidth' => '',
+             'labelWidth' => 0,
              'labelAlign' => 'left',
           )),
         ),
@@ -549,6 +552,9 @@ return Pimcore\Model\DataObject\ClassDefinition::__set_state(array(
    'enableGridLocking' => false,
    'dao' => NULL,
    'blockedVarsForExport' => 
+  array (
+  ),
+   'activeDispatchingEvents' => 
   array (
   ),
 ));
