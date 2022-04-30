@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Pimcore\Model\DataObject\Product;
 use Pimcore\Controller\FrontendController;
 use Pimcore\Model\DataObject\Breeding;
 use Pimcore\Tool;
@@ -38,9 +39,11 @@ class BreedingController extends FrontendController
         $key = $request->get("id");
         $breedings = new Breeding\Listing();
         $breedings->setCondition("o_key = ?", strtoupper($key));
-        if ($breedings->getTotalCount() == 1){
-            $datas = $breedings->load();
-            return ["breeding" => $datas[0]];
+        if ($breedings->getTotalCount() == 1) {
+            $datas = $breedings->load()[0];
+//            $products = new Product\Listing();
+            $products = Product::getByClutch($datas);
+            return ["breeding" => $datas, "products" => $products->load()];
         }
         return $this->redirect("/");
     }

@@ -93,7 +93,7 @@
                                         <span class="font-weight-bold">Clutch</span>
                                     </div>
                                     <div class="col-9">
-                                        Kuning Hitam
+                                        {{ product.clutch.clutchId?? "-" }}
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         <span class="font-weight-bold">Weight</span>
                                     </div>
                                     <div class="col-9">
-                                        {{ measurement.weight ~ " " ~ measurement.unit }}
+                                        {{ measurement ? measurement.weight : "" }} {{ measurement != null ? measurement.unit : "" }}
                                         ({{ measurement ? measurement.creationDate | date("j F Y")  : "-" }})
                                     </div>
                                 </div>
@@ -117,10 +117,10 @@
                                     </div>
                                     <div class="col-9">
                                         {# {{ breeding.getTotalCount() == 1 ? breeding.load()[0].sire.name : "-" }} #}
-                                        {% if breeding.getTotalCount() == 1 %}
+                                        {% if product.clutch %}
                                             <a class="text-black"
-                                               href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.load()[0].sire.key | url_encode }}">
-                                                {{ breeding.load()[0].sire.name }}
+                                               href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.clutch.sire.key | url_encode }}">
+                                                {{ product.clutch.sire.name }}
                                             </a>
                                         {% else %}
                                             -
@@ -152,10 +152,18 @@
                                         <span class="font-weight-bold">Dame</span>
                                     </div>
                                     <div class="col-9">
-                                        {% if breeding.getTotalCount() == 1 %}
+                                        {# {% if breeding.getTotalCount() == 1 %} #}
+                                        {# <a class="text-black" #}
+                                        {# href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.load()[0].dame.key | url_encode }}"> #}
+                                        {# {{ breeding.load()[0].dame.name }} #}
+                                        {# </a> #}
+                                        {# {% else %} #}
+                                        {# -#}
+                                        {# {% endif %} #}
+                                        {% if product.clutch %}
                                             <a class="text-black"
-                                               href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ breeding.load()[0].dame.key | url_encode }}">
-                                                {{ breeding.load()[0].dame.name }}
+                                               href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.clutch.dame.key | url_encode }}">
+                                                {{ product.clutch.dame.name }}
                                             </a>
                                         {% else %}
                                             -
