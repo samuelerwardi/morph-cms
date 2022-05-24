@@ -188,8 +188,8 @@
                     </div>
                     <div class="row mb-5">
                         {% for product in products %}
-                            <div class="col-sm-6 col-lg-3 mb-4" data-aos="fade-up">
-                                <div class="block-4 text-center border  h-100">
+                            <div class="col-sm-6 col-lg-3 mb-4 aos-init col-relative aos-animate" data-aos="fade-up">
+                                <div class="card-border border rounded">
                                     {% if product.status == "AVAILABLE" %}
                                         <div class="label available">
                                             <p class="label-text">AVAILABLE</p>
@@ -216,55 +216,43 @@
                                                 src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
                                                 alt="Image placeholder" class="img-fluid-styles"></a>
                                     </div>
-                                    <div class="row ml-0">
-
-                                        <div class="col-md-8">
-                                            <span>
+                                    <div class="card-image-title">
+                                        <p class="text-black text-left">
+                                            <a class="text-black"
+                                               href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
+                                                {{ product.name }}
+                                            </a>
+                                        </p>
+                                        <p class="text-black text-left">
+                                            {% if product.sex == "MALE" %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" stroke="steelblue"
+                                                     stroke-width="1" width="16" height="16" fill="currentColor"
+                                                     class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                          d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+                                                </svg>
+                                            {% else %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" stroke="hotpink"
+                                                     stroke-width="1" width="16" height="16" fill="currentColor"
+                                                     class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                          d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
+                                                </svg>
+                                            {% endif %}
+                                        </p>
+                                        </div>
+                                        <div>
                                             <p class="text-black text-left">
-                                                <a class="text-black"
-                                                   href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
-                                                    {{ product.name }}
-                                                </a>
-                                            </p>
-                                          </span>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <p class="text-black">
-                                                {% if product.sex == "MALE" %}
-                                                    <svg xmlns="http://www.w3.org/2000/svg" stroke="steelblue"
-                                                         stroke-width="1" width="16" height="16" fill="currentColor"
-                                                         class="bi bi-gender-male" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                              d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                                                    </svg>
-                                                {% else %}
-                                                    <svg xmlns="http://www.w3.org/2000/svg" stroke="hotpink"
-                                                         stroke-width="1" width="16" height="16" fill="currentColor"
-                                                         class="bi bi-gender-male" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd"
-                                                              d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                                    </svg>
-                                                {% endif %}
-                                            </p>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <p class="mb-0 text-left text-secondary">
                                                 <a class="text-secondary"
                                                    href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
                                                     {{ product.identity }}
                                                 </a>
                                             </p>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <p class="mb-0 text-left">
                                             <span class="text-black font-weight-bold">
                                                 IDR {{ product.IDR | number_format(0, ',', '.') }}
                                             </span>
-                                            </p>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         {% endfor %}
                     </div>

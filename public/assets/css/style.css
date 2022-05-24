@@ -1473,3 +1473,81 @@ a:hover {
     -webkit-transform: rotate(135deg);
     margin-left: 4px;
 }
+
+.label {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;
+    height: 20px;
+    transform: rotate(-45deg);
+    left: -30px;
+    top: 30px;
+}
+
+.label.available {
+    background-color: #30CB83;
+}
+
+.label.reserved {
+    background-color: #9B59B6;
+}
+
+.label.sold {
+    background-color: #E74C3C;
+}
+
+.label.holdback {
+    background-color: #34495E;
+}
+
+.label .label-text {
+    color: #fff;
+    font-size: 14px;
+    margin: 0;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.col-relative{
+    position: relative;
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+.img-fluid-styles{
+    padding: 10px;
+}
+.card-content{
+    display:flex;
+    justify-content: space-between;
+}
+.block-4.border{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.card-image-title{
+    display:flex;
+    justify-content: space-between;
+}
+
+.card-wrap{
+    /*    padding-left: 15px;
+        padding-right: 15px;*/
+}
+.card-border {
+    position: relative;
+    flex: 1;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 15px;
+    box-shadow: rgb(5 4 4 / 30%) 0px 0px, rgb(0 0 0 / 10%) 0px 10px 10px;
+}
+
+
+
