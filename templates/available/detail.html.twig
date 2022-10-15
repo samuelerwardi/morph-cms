@@ -13,8 +13,9 @@
                         {# src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}" #}
                         {# alt="Image" class="img-thumbnail"> #}
                         {% if product.images %}
+{#                            {{ dump(product.images|length) }}#}
                             {% for indexImage, itemImage in product.images %}
-                                {# {{ dump(indexImage) }} #}
+{#                                 {{ dump("samuelll") }}#}
                                 {% if indexImage == 0 %}
                                     <div class="img-preview-container">
                                         <img
@@ -23,7 +24,7 @@
                                     </div>
                                     <div class="img-list">
                                     <div class="owl-carousel img-list-carousel">
-                                    <div class="img-list-container selected">
+                                    <div class="img-list-container">
                                         <img
                                             src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ itemImage.image.fullpath : "#" }}"
                                             alt="Image" class="img-fluid img-thumbnail">
@@ -199,13 +200,13 @@
         </div>
         <div class="site-section block-3 site-blocks-2">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
-                        <div class="col-md-12 site-section-heading text-center pt-4">
-                            <h2>Recent Feedings</h2>
-                        </div>
-                    </div>
-                </div>
+{#                <div class="row justify-content-center">#}
+{#                    <div class="col-md-12">#}
+{#                        <div class="col-md-12 site-section-heading text-center pt-4">#}
+{#                            <h2>Recent Feedings</h2>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
                 <div class="row">
                     <div class="col-md-12">
                         <div class="nonloop-block-3 owl-carousel">

@@ -56,3 +56,5 @@ nbproject
 .ash_history
 cache
 .env
+.import.txt
+/import.txt

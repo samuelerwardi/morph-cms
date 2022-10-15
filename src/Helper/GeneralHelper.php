@@ -99,4 +99,9 @@ class GeneralHelper
         $str = urldecode($str);
         return str_replace('--', '-', preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(" ", $delimiter, strtolower($str))));
     }
+
+    static function clean($string) {
+        $string = ltrim(rtrim($string));
+        return preg_replace('/[^\da-z ]/i', '', $string);
+    }
 }

@@ -32,6 +32,7 @@ class AvailableController extends FrontendController
         $searchByDob = $request->get("dob");
         $searchByStatus = $request->get("status");
         $data = new Product\Listing();
+        $data->addConditionParam("status != ? ", ["HOLD_BACK"]);
         if ($searchByStatus) {
 //            dd($searchByStatus);
             $data->addConditionParam("status IN (?)", [$searchByStatus]);

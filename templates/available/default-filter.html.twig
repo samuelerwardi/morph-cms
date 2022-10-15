@@ -99,11 +99,7 @@
                                                value="available" {{ 'available' in app.request.query.get("status") ? 'checked' : null }}>
                                         <label for="status-available" class="pl-1 pt-sm-0 pt-1">Available</label>
                                     </div>
-                                    <div class="form-inline border rounded p-sm-2 my-2">
-                                        <input type="checkbox" name="status[]" class="filters" id="status-holdback"
-                                               value="hold_back" {{ 'hold_back' in app.request.query.get("status") ? 'checked' : null }}>
-                                        <label for="status-holdback" class="pl-1 pt-sm-0 pt-1">Holdback</label>
-                                    </div>
+{#img-list-container selected#}
                                     <div class="form-inline border rounded p-sm-2 my-2">
                                         <input type="checkbox" name="status[]" class="filters" id="status-reserved"
                                                value="reserved" {{ 'reserved' in app.request.query.get("status") ? 'checked' : null }}>
@@ -213,7 +209,7 @@
                                     <div class="block-4-image">
                                         <a href="{{ app.request.getSchemeAndHttpHost() ~ pimcore_website_config("available").fullpath ~ "/" ~ product.key | url_encode }}">
                                             <img
-                                                src="{{ product.images ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : "#" }}"
+                                                src="{{ product.images.items|length > 0 ? app.request.getSchemeAndHttpHost() ~ product.images.items[0].image.fullpath : '#' }}"
                                                 alt="Image placeholder" class="img-fluid-styles"></a>
                                     </div>
                                     <div class="card-image-title">

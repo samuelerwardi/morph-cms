@@ -1422,6 +1422,7 @@ a:hover {
 .img-list-container {
     overflow: hidden;
     cursor: pointer;
+    margin: 0.20rem;
 }
 
 .img-list-container.selected {
